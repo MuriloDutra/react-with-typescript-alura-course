@@ -7,13 +7,11 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-export default class Button extends React.Component<ButtonProps> {
-  render(): React.ReactNode {
-    const { type = "button", children, onClick } = this.props;
-    return (
-      <button onClick={onClick} type={type} className={style.botao}>
-        {children}
-      </button>
-    );
-  }
+export default function Button(props: ButtonProps) {
+  const { type = "button", children, onClick } = props;
+  return (
+    <button onClick={onClick} type={type} className={style.botao}>
+      {children}
+    </button>
+  );
 }
