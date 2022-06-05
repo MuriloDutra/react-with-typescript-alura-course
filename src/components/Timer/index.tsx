@@ -17,6 +17,15 @@ export default function Timer(props: Props) {
     if (selected?.time) setTime(parseToSeconds(selected.time));
   }, [selected]);
 
+  function regression(counter: number = 0) {
+    setTimeout(() => {
+      if (counter > 0) {
+        setTime(counter - 1);
+        return regression(counter - 1);
+      }
+    }, 1000);
+  }
+
   return (
     <div className={style.cronometro}>
       <p className={style.titulo}>Escolha um card e inicie o cronômetro</p>
@@ -24,7 +33,7 @@ export default function Timer(props: Props) {
       <div className={style.relogioWrapper}>
         <Clock time={time} />
       </div>
-      <Button>Começar!</Button>
+      <Button onClick={() => regression(time)}>Começar!</Button>
     </div>
   );
 }
