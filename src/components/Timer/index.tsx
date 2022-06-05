@@ -7,10 +7,11 @@ import style from "./Timer.module.scss";
 
 interface Props {
   selected: ItemTask | undefined;
+  finishTask: () => void;
 }
 
 export default function Timer(props: Props) {
-  const { selected } = props;
+  const { selected, finishTask } = props;
   const [time, setTime] = useState<number>();
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function Timer(props: Props) {
       if (counter > 0) {
         setTime(counter - 1);
         return regression(counter - 1);
-      }
+      } else finishTask();
     }, 1000);
   }
 
